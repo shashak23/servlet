@@ -14,6 +14,9 @@
 	<h1><%=((Member)session.getAttribute("member")).getMemberName()%>님 환영합니다.</h1>
 	
 	<h3>게시글 목록</h3>
+	<form action="Write.html">
+	<button type="submit"></button>
+	</form>
 	<table border="2">
 		<thead>
 			<th>글번호</th>

@@ -3,17 +3,17 @@
           PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
           
-<mapper namespace="myMember">
+<mapper namespace="members">
 
-	<select id="login" parameterType="member"
+	<select id="selectOn" parameterType="members"
 	        resultType="member">		
 		<![CDATA[
-			SELECT memberId, memberName, memberPw
-			FROM members 
-			WHERE memberId = #{memberId} AND memberPw = #{memberPw}
+			SELECT mid, mname, mpw
+			FROM book 
+			WHERE btitle LIKE CONCAT('%', #{btitle}, '%') AND
+			      bprice < #{bprice}	
 		]]>
 	</select>
 	<!-- id와 pw를 인식하고 처리하는 쿼리문 작성 -->
 
 </mapper>
-

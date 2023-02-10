@@ -6,6 +6,7 @@
 <mapper namespace="myBoard">
 
 	<select id="allBoards"
+	
 	        resultType="Board">		
 		<![CDATA[
 			SELECT boardNum, boardTitle, boardContent, boardAuthor, boardDate, boardLike

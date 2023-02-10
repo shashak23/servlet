@@ -11,6 +11,7 @@ public class BoardDao {
 
 	public List<Board> selectAll() {
 		
+		
 		// Database처리만 하면 되요!
 		// MyBatis이용해요!
 		SqlSession sqlSession = 

@@ -10,12 +10,48 @@
 	버튼을 또 폼으로 가둬야 해 , 새로 만드는 서블렛에 보내요
 	그 폼 액션에서는 새로 보드에다가 서블렛을 만들고 
 	write서블레 등등 만들고 보내고 텍스트필드 2개의 내용을 받아서
-	받은 내요을 또 wrte 서블렛에서는 갖ㄱ오 있는ㄷ 제목이랑 타잉틀로
+	받은 내요을 또 write 서블렛에서는 갖ㄱ오 있는ㄷ 제목이랑 타잉틀로
 	글쓴이가 눅ㄴ지는 세션에 member라고 저장을 해둬서
 	db에 넣어야할 거는 글쓴이, 내용 나머지는 초기값이어서 00으로 인서트를 넣ㅇ면 되요
 	getmeeberid로 꺼내오고 4
 	서비스는 빈 내용의 있느니 업는지 저옫만 확인하느 
 	라이트 객체에 있는 내용을 보내는 걸 짜고 
 	인서트문짜서 넣고  -->
+	<!-- 여유되면 상단에 뒤로가기 만들기 -->
+	<h2>고양이 게시판에 자유글 작성하기 ٩( ᐛ )و </h2>
+	
+	<!-- html은 그냥 쎴는데 jsp도 그냥 쓰는 거 맞나? -->
+<!-- <form action="BoardServlet" method="post">
+	<button type="submit" name="back">뒤로가기</button> 
+</form> 1. 세션에 담거나 2.컨트롤러 거치게 서블릿 리스트에서 꺼내보게 -->
+<form action="BoardServlet" method="post">	
+	<br>
+	제목 : <input type="text" name="boardT"> 
+	<br><br>
+	작성자 : <input type="text">
+	<br><br>
+	작성일 : <input type="text" name="boardD">
+	<br><br>
+	<!-- 수정, 삭제, 등록 버튼으로 -->
+	<button type="submit">수정</button>
+	<button type="submit">삭제</button> 
+	
+	<button type="submit" name="write">등록</button>
+</form>
+
+	<br><br>
+<!-- 	<input type="image" src="">  -->
+	<!-- 경로적기 -->
+	내용 : <br><textarea rows="10" cols="30" name="boardC"></textarea>
+	<br><br>
+	<br><br>
+	<!-- 수정, 삭제, 등록 -->
+	댓글 <br><textarea rows="2" cols="30" ></textarea>
+	<br>
+	<button type="submit">수정</button>
+	<button type="submit">삭제</button>
+	<button type="submit">등록</button>
+	<br><br>
+
 </body>
 </html>

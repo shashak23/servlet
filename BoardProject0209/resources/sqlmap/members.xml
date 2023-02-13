@@ -5,8 +5,8 @@
           
 <mapper namespace="myMember">
 
-	<select id="login" parameterType="member"
-	        resultType="member">		
+	<select id="login" parameterType="Member"
+	        resultType="Member">		
 		<![CDATA[
 			SELECT memberId, memberName, memberPw
 			FROM members 
@@ -14,6 +14,17 @@
 		]]>
 	</select>
 	<!-- id와 pw를 인식하고 처리하는 쿼리문 작성 -->
+	
+     
+	<insert id="join" parameterType="Member">		
+		<![CDATA[
+			INSERT INTO members (memberId, memberName, memberPw)
+			VALUES (#{memberId}, #{memberName}, #{memberPw})
+		]]>
+	</insert>
+	
+	<!-- id와 pw를 인식하고 처리하는 쿼리문 작성 -->
+	
 
 </mapper>
 

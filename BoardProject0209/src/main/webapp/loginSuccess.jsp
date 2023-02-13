@@ -11,11 +11,11 @@
     <!-- JSP에서는 나에게 할당된 session객체를 그냥 사용할 수 있어요! 
          어떤 이름을 사용해야 하나요? ==> session
     -->
-	<h1><%=((Member)session.getAttribute("member")).getMemberName()%>님 환영합니다.</h1>
+	<h1><%=((Member)session.getAttribute("member")).getMemberName()%>님 환영합니다. ◟(∗❛ᴗ❛∗)◞ </h1>
 	
 	<h3>게시글 목록</h3>
 	<form action="Write.html">
-	<button type="submit"></button>
+	<button type="submit" name="write">글쓰기</button>
 	</form>
 	<table border="2">
 		<thead>

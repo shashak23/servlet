@@ -69,12 +69,14 @@ public class LoginServlet extends HttpServlet {
 		// 2. 로직담당 - 
 		// 로직처리를 하기위해 Service객체를 생성해야 해요!
 		MemberService service = new MemberService();
+		// 인스턴스 = 메소드 
+		
 		// 클라이언트가 요청할 떄마다 이게 실행되는데, 100명이면 100개가 만들어지겠쬬?
 	    // 그럼 서버가 많이 힘들어요? 이렇게 되겠쬬? -> 이런 식의 코드는 좋지 않지만 의미론적으로 우리끼리 하는 거니까 해봐요!
 	    // 객체가 생성되었으면 이제 일을 시켜요
 		//  boolean result = service.login(member);  //불리언을 쓴다면 login이 트루, 폴스
 		// 만약 로그인이 성공하면 VO안에 회원의 이름까지 포함해서 들고와요.
-		// 만약 로그인이 실패하면 null을 리턴받을꺼예요!
+		// 만약 로그인이 실패하면 nulal을 리턴받을꺼예요!
 		
 		Member result = service.login(member);
 		

@@ -60,8 +60,8 @@
 	<!-- mapping된 SQL 구문이 있는 XML 파일에 대한 설정! -->
 	<!-- Board.xml와 members.xml이라는 mapper를 넣기 -->
 	<mappers>
+	    <mapper resource="./sqlmap/Board.xml"/>
 		<mapper resource="./sqlmap/members.xml"/>
-		<mapper resource="./sqlmap/Board.xml"/>
 	</mappers>
 
 

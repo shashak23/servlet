@@ -5,13 +5,23 @@
           
 <mapper namespace="myBoard">
 
+    
 	<select id="allBoards"
-	
 	        resultType="Board">		
 		<![CDATA[
 			SELECT boardNum, boardTitle, boardContent, boardAuthor, boardDate, boardLike
 			FROM boards
 		]]>
 	</select>
-
+	
+	<insert id="listBoards" parameterType="Board">
+			<![CDATA[
+			INSERT INTO boards (boardNum, boardTitle, 
+						boardContent, boardAuthor, boardLike)
+			VALUES (#{boardNum}, #{boardTitle}, 
+						#{boardContent},#{boardAuthor}, 1)
+		]]>
+			
+	</insert>
+ 
 </mapper>

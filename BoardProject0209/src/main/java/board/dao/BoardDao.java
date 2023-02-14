@@ -35,12 +35,39 @@ public class BoardDao {
 			sqlSession.rollback();
 		}
 		sqlSession.close();
-		
-		
+		  
 		return result;
 	}
 
-	
+	public Board selectOne(String bNum) {
+		// 데이터를 다 요쳥을 db에게 하고 
+		SqlSession sqlSession = 
+				MybatisConnectionFactory.getSqlSessionFactory().openSession();
+		
+		Board board = sqlSession.selectOne("myBoard.oneBoard", bNum);
+		
+		sqlSession.close();
+		
+		return board;
+	}
+
+	public int delete(Board board) {
+		// 연결
+		SqlSession sqlSession = 
+				MybatisConnectionFactory.getSqlSessionFactory().openSession();
+		
+		int result = sqlSession.selectOne("myBoard.deleteBoards", board);
+		
+		if(result ==1) {
+			
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+
+		return result;
+	}
 	
 }
     

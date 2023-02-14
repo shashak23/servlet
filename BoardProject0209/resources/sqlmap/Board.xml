@@ -14,6 +14,15 @@
 		]]>
 	</select>
 	
+	<select id="oneBoard" parameterType="String"
+	        resultType="Board">		
+		<![CDATA[
+			SELECT boardNum, boardTitle, boardContent, boardAuthor, boardDate, boardLike
+			FROM boards
+			WHERE boardNum = #{bNum}
+		]]>
+	</select>
+	
 	<insert id="listBoards" parameterType="Board">
 			<![CDATA[
 			INSERT INTO boards (boardNum, boardTitle, 
@@ -23,5 +32,18 @@
 		]]>
 			
 	</insert>
+	
+	<delete id="deleteBoards" parameterType="Board">
+		<![CDATA[
+			DELETE FROM boards
+			WHERE  boardNum, boardTitle, 
+						boardContent, boardAuthor, 
+						boardDate, boardLike 
+						= (#{boardNum}, #{boardTitle}, 
+						#{boardContent},#{boardAuthor}, 
+						#{boardDate},#{boardLike})
+		]]>	
+	
+	</delete>
  
 </mapper>

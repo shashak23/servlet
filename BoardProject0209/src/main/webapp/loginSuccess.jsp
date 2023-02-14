@@ -36,7 +36,7 @@
 		
 				<tr>
 					<td><%= board.getBoardNum() %></td>
-					<td><a href="#"><%= board.getBoardTitle() %></a></td>
+					<td><a href="boardresult?bNum=<%= board.getBoardNum() %>"><%= board.getBoardTitle() %></a></td>
 					<td><%= board.getBoardAuthor() %></td>
 					<td><%= board.getBoardDate() %></td>
 					<td>0</td>

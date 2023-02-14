@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+          PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+          
+          
+<mapper namespace="myComment">
+
+	<insert id="Insert" parameterType="Comment">
+			<![CDATA[
+			INSERT INTO boards (commentNum, commentContent, 
+						commentAutor, commentDate)
+			VALUES (#{commentNum}, #{commentContent}, 
+						#{commentAutor},#{commentDate})
+		]]>
+			
+	</insert>
+	
+	<select id="allCommnet"
+	        resultType="Comment">		
+		<![CDATA[
+			SELECT commentNum, commentContent, commentAutor, commentDate
+			FROM COMMENT
+		]]>
+	</select>
+
+</mapper>          

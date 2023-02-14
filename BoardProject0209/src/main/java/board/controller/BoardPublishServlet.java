@@ -43,17 +43,16 @@ public class BoardPublishServlet extends HttpServlet {
 		// 글쓰기 내용을 db에 전달하고 
 		// 게시판 리스트 보여주고
 		request.setCharacterEncoding("UTF-8");
-		int boardNum = Integer.parseInt(request.getParameter("boardN"));
+//		int boardNum = Integer.parseInt(request.getParameter("boardN"));
 		String boardTitle = request.getParameter("boardT");
 		String boardContent = request.getParameter("boardC");
-		String boardAuthor = request.getParameter("boardA");
+//		String boardAuthor = request.getParameter("boardA");
 		String boardDate = request.getParameter("boardD");
 		int boardLike = Integer.parseInt(request.getParameter("boardL"));
 		
 		Board board = new Board();
-		board.setBoardNum(boardNum);
 		board.setBoardTitle(boardTitle);
-		board.setBoardAuthor(boardAuthor);
+//		board.setBoardAuthor(boardAuthor);
 		board.setBoardContent(boardContent);
 		board.setBoardDate(boardDate);
 		board.setBoardLike(boardLike);
@@ -68,8 +67,7 @@ public class BoardPublishServlet extends HttpServlet {
 			BoardService bservice = new BoardService();
 			list = bservice.getAllBoard();
 		}
-		
-		
+
 	}
 
 }

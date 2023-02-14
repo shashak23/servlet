@@ -23,11 +23,35 @@ public class BoardService {
 		// 글을 작성완료한 후 
 		BoardDao dao = new BoardDao(); 
 		int result = dao.insert(board);
-		// 데이터가 insert된 select list 가져오기 
-//	    List<Board> list = dao.selectAll();
-	    
+
+		return result;  
+	}
+
+//	public Board selectOne(Board board) {
+//		// 타이틀을 누렀을 때 db에서 연결된 정보들이 하나씩 나오기!
+//		BoardDao dao = new BoardDao();
+//		Board result = dao.selectOne(board);
+//		
+//		return result;
+//	}
+
+	public Board getBoardByNum(String bNum) {
+		// 로직처리를 하게 해 
+		BoardDao dao = new BoardDao();
+		Board board = dao.selectOne(bNum);
 		
+		return board;
+	}
+
+	public int deleteBoard(Board board) {
+		// 로직
+		BoardDao dao = new BoardDao();
+		int result = dao.delete(board);
+				
 		return result;
 	}
+
+	
+
 
 }

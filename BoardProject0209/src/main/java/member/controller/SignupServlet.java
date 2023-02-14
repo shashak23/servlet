@@ -54,7 +54,7 @@ public class SignupServlet extends HttpServlet {
 		// 2. 로직처리하고 - service
 		MemberService service = new MemberService();
 		int result = service.signup(member);
-		
+		 
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher("signupSuccess.jsp");
 

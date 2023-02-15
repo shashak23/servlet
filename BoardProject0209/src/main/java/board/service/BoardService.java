@@ -43,15 +43,31 @@ public class BoardService {
 		return board;
 	}
 
-	public int deleteBoard(Board board) {
+	public int deleteBoard(String bNum) {
 		// 로직
 		BoardDao dao = new BoardDao();
-		int result = dao.delete(board);
+		int result = dao.delete(bNum);
 				
 		return result;
 	}
 
-	
+	public int updateBoard(Board board) {
+		// 로직
+		BoardDao dao = new BoardDao();
+
+		int result = dao.update(board);
+		
+		return result;
+	}
+
+
+//	public int updateBoard(String bNum) {
+//		// 로직 
+//		BoardDao dao = new BoardDao();
+//		int list = dao.update(bNum);
+//		
+//		return list;
+//	}	
 
 
 }

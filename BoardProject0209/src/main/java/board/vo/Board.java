@@ -7,20 +7,22 @@ public class Board {
 	private String boardContent;
 	private String boardAuthor;
 	private String boardDate;
+	private int boardComment;
 	private int boardLike;
 	
 	public Board() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Board(int boardNum, String boardTitle, String boardContent, String boardAuthor, String boardDate,
-			int boardLike) {
+			int boardComment, int boardLike) {
 		super();
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
 		this.boardAuthor = boardAuthor;
 		this.boardDate = boardDate;
+		this.boardComment = boardComment;
 		this.boardLike = boardLike;
 	}
 
@@ -62,6 +64,14 @@ public class Board {
 
 	public void setBoardDate(String boardDate) {
 		this.boardDate = boardDate;
+	}
+
+	public int getBoardComment() {
+		return boardComment;
+	}
+
+	public void setBoardComment(int boardComment) {
+		this.boardComment = boardComment;
 	}
 
 	public int getBoardLike() {

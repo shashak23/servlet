@@ -23,6 +23,7 @@
 		]]>
 	</select>
 	
+	
 	<insert id="listBoards" parameterType="Board">
 			<![CDATA[
 			INSERT INTO boards (boardNum, boardTitle, 
@@ -32,18 +33,29 @@
 		]]>
 			
 	</insert>
-	
-	<delete id="deleteBoards" parameterType="Board">
+
+<!-- 이거는 String이라는 새로운 형태로 만들어진 bNum으로 하니까 
+	새로운 명시때문에 조건을 입력할 떄 알아볼 수 있도록 넣어주는 것이고 -->
+	<delete id="deleteBoards" parameterType="String">
 		<![CDATA[
 			DELETE FROM boards
-			WHERE  boardNum, boardTitle, 
-						boardContent, boardAuthor, 
-						boardDate, boardLike 
-						= (#{boardNum}, #{boardTitle}, 
-						#{boardContent},#{boardAuthor}, 
-						#{boardDate},#{boardLike})
+			WHERE  boardNum = #{bNum}
 		]]>	
 	
 	</delete>
+	
+	<!-- 업데이트 내용을 받아오기 위한 result
+		이거는 Board라는 vo가 담긴 class를 가져오는 거라
+		밑에 조건 명시를 class와 똑같이 써야하고 -->
+	<update id="updateBoards" parameterType="Board">
+		
+		<![CDATA[
+			UPDATE boards
+			SET  boardContent = #{boardContent}
+			WHERE boardNum = #{boardNum}
+		]]>	
+	
+	</update>
+	
  
 </mapper>

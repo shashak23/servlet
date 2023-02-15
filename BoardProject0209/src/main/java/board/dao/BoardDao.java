@@ -51,12 +51,12 @@ public class BoardDao {
 		return board;
 	}
 
-	public int delete(Board board) {
+	public int delete(String bNum) {
 		// 연결
 		SqlSession sqlSession = 
 				MybatisConnectionFactory.getSqlSessionFactory().openSession();
-		
-		int result = sqlSession.selectOne("myBoard.deleteBoards", board);
+		// int는 수행된 row값이어서 1나오면 한줄이 제대로 지워진거고 0이면 안된거고 
+		int result = sqlSession.delete("myBoard.deleteBoards", bNum);
 		
 		if(result ==1) {
 			
@@ -68,6 +68,40 @@ public class BoardDao {
 
 		return result;
 	}
-	
+
+	public int update(Board board) {
+		// 로직
+		SqlSession sqlSession = 
+				MybatisConnectionFactory.getSqlSessionFactory().openSession();
+		int result = sqlSession.update("myBoard.updateBoards", board);
+		
+		if(result ==1) {
+			
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+
+		return result;
+	}
+
+
+//	public int update(String bNum) {
+//		SqlSession sqlSession = 
+//				MybatisConnectionFactory.getSqlSessionFactory().openSession();
+//		// 업데이트로 하기 
+//		int list = sqlSession.update("myBoard.updateBoards", bNum);
+//		
+//		if(list ==1) {
+//			
+//			sqlSession.commit();
+//		} else {
+//			sqlSession.rollback();
+//		}
+//		sqlSession.close();
+//		
+//		return list;
+//	}
 }
     

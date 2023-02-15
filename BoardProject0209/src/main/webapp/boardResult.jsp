@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1><% ((Board)session.getAttribute("board")).getBoardTitle()  %></h1>
+	<h1><% ((Board)session.getAttribute("board")).getBoardTitle() %></h1>
 <form action="Result.html"></form>
 	<table>
 		<thead>

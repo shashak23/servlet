@@ -1,6 +1,7 @@
 package board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +16,16 @@ import board.vo.Board;
 import member.vo.Member;
 
 /**
- * Servlet implementation class DeleteServlet
+ * Servlet implementation class ModifyServlet
  */
-@WebServlet("/deleteservlet")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/modify")
+public class ModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteServlet() {
+    public ModifyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,32 +42,34 @@ public class DeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 삭제데이터 보내는 거 하고 
-		// 여기다가 타이틀을 눌렀을 때 게시글 정보가 나오도록 데이터 입력하고 로직하기
-				request.setCharacterEncoding("UTF-8");
-				HttpSession session = request.getSession();
-				Member currentUser = (Member)session.getAttribute("member");
-			
-				// 데이터를 얻고 서비스에 요청하는 
-				String bNum = request.getParameter("bNum");
-				
-				BoardService service = new BoardService();
-				int result = service.deleteBoard(bNum);
-				
-				if (result ==1) {
-					//1일 때 리스트가 가져와지고 
-					RequestDispatcher dispatcher = 
-							request.getRequestDispatcher("deleteSuccess.jsp");
-					request.setAttribute("board", result);
-					
-					dispatcher.forward(request, response);
-					
-				} else {
-					//0이면 에러 페이지가 나오도록 
-					request.getRequestDispatcher("deleteFail.html");
-				}
-				
+		// 한글이 안 깨지게끔 해주느 거 
+		request.setCharacterEncoding("UTF-8");
+		// 데이터 보낼 거 입력하기
+		String boardContent = request.getParameter("boardC");
+		int bNum = Integer.parseInt(request.getParameter("bNum"));
 		
+		Board board = new Board();
+		board.setBoardContent(boardContent);
+		board.setBoardNum(bNum);
+		
+		//보드넘버를 명시해주는 과정이 없다
+		
+		// 로직을 위한 service 생성 및 결과
+		BoardService service = new BoardService();
+		int result = service.updateBoard(board);
+		List<Board> list = null;
+	
+		if(result ==1) {
+			
+			BoardService bservice = new BoardService();
+			list = bservice.getAllBoard();
+			// 다른 페이지에서도 찾을 수 있게 키와 값을 쌍으로 명시한다
+			request.setAttribute("boardList", list);
+			RequestDispatcher dispatcher = 
+					request.getRequestDispatcher("loginSuccess.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			response.sendRedirect("modifyFail.html");
+		}
 	}
-
 }

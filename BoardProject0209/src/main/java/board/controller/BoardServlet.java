@@ -46,6 +46,7 @@ public class BoardServlet extends HttpServlet {
 //		String boardAuthor = request.getParameter("boardA");
 		String boardAuthor = currentUser.getMemberId();
 		String boardDate = request.getParameter("boardD");
+//		String boardWriter = session.getAttribute("userID");
 		
 
 		// 테이블 만들기
@@ -67,7 +68,7 @@ public class BoardServlet extends HttpServlet {
 			list = bservice.getAllBoard();
 		}
 		
-		// 작성자가 세션에 저장되어 있는 걸로 하면 비교해서 되지 않을가?
+		// 작성자가 세션에 저장되어 있는 걸로 하면 비교해서 되지 않을가? 
 		// 세션에 저장하는 거는 로그인 직후, 아이디를 저장해놓고 종료할때까지 가져가는 걸로
 		
 		// id가 존재하는 사람이면 정상 처리되어 게시글 완료 

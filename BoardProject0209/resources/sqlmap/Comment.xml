@@ -5,23 +5,22 @@
           
           
 <mapper namespace="myComment">
+	
+	<select id="allCommnet" parameterType="int"
+	        resultType="Comment">		
+		<![CDATA[
+			SELECT commentContent, commentAuthor, boardNum
+			FROM COMMENT
+			WHERE boardNum = #{boardNum}
+		]]>
+	</select>
 
-	<insert id="Insert" parameterType="Comment">
+	<insert id="insertComment" parameterType="Comment">
 			<![CDATA[
-			INSERT INTO boards (commentNum, commentContent, 
-						commentAutor, commentDate)
-			VALUES (#{commentNum}, #{commentContent}, 
-						#{commentAutor},#{commentDate})
+			INSERT INTO comment (commentContent, commentAuthor, boardNum)
+			VALUES (#{commentContent}, #{commentAuthor}, #{boardNum})
 		]]>
 			
 	</insert>
-	
-	<select id="allCommnet"
-	        resultType="Comment">		
-		<![CDATA[
-			SELECT commentNum, commentContent, commentAutor, commentDate
-			FROM COMMENT
-		]]>
-	</select>
 
 </mapper>          

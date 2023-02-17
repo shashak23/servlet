@@ -9,6 +9,10 @@
 </head>
 <body>
 	<button onclick="history.back()">뒤로가기</button>
+	<form action="logout">
+		<button type="submit" name="Logout">로그아웃</button>
+	</form>
+	
 	<!-- 뒤로가기는 history.back()을 사용
 		앞으로 가기는 history.forward()을 사용 -->
 			<!-- 여유되면 상단에 뒤로가기 만들기 -->
@@ -20,31 +24,24 @@
 		</form> 1. 세션에 담거나 2.컨트롤러 거치게 서블릿 리스트에서 꺼내보게 -->
 		<form action="boardServlet" method="post">	
 				<br>
-				제목 : <input type="text" name="boardT"> 
+				제목 : <input type="text" name="boardT"> <br>
 				<!-- <br><br> -->
 			<!-- 	작성자 : <input type="text">
 				<br><br> -->
 				<!--작성일  : <input type="text" name="boardD">
 				<br><br> -->
-				<button type="submit" name="write">등록</button>
 				
-		</form>
 	
-		<br><br>
+				<br><br>
 	<!-- 	<input type="image" src="">  -->
 		<!-- 경로적기 -->
-		내용 : <br><textarea rows="10" cols="30" name="boardC"></textarea>
-		<br><br>
-		<br><br>
-		<!-- 수정, 삭제, 등록 커켄드서블릿으로 가서 함하고? db연결하고 결과뜨기
-				없는 것응ㄴ commentNum 이랑 commentDate !!  --><!-- 
-				댓글 <br><textarea rows="2" cols="30" name="commentT"></textarea>
-				<br>			
-						<button type="submit" name="commentE">수정</button>
-				
-						<button type="submit" name="commentD">삭제</button>
-				
-						<button type="submit" name="commentI">등록</button>
-				<br><br> -->
+				내용 : <br><textarea rows="10" cols="30" name="boardC"></textarea><br>
+   				   	 <button type="submit" name="write">등록</button>
+		</form>
+		
+		<form>
+			<button type="submit" name="cancel">취소</button>	
+		</form>
+		
 	</body>
 </html>

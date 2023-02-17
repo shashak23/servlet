@@ -1,4 +1,4 @@
-package board.controller;
+package member.controller;
 
 import java.io.IOException;
 
@@ -10,21 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import board.service.BoardService;
-import board.vo.Board;
 import member.vo.Member;
 
 /**
- * Servlet implementation class BoardResult
+ * Servlet implementation class LogOut
  */
-@WebServlet("/boardresult")
-public class BoardResult extends HttpServlet {
+@WebServlet("/logout")
+public class LogOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardResult() {
+    public LogOut() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,34 +31,28 @@ public class BoardResult extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		// 여기다가 타이틀을 눌렀을 때 게시글 정보가 나오도록 데이터 입력하고 로직하기
-		request.setCharacterEncoding("UTF-8");
-		
-//		// 형변환으로 접속한 id의 30분유지를 통한 자동저장!
-//		HttpSession session = request.getSession();
-//		Member currentUser = (Member)session.getAttribute("member");
-//		
-		String bNum = request.getParameter("bNum");
-		
-		// 데이터를 얻고 서비스에 요청하는 
-		BoardService service = new BoardService();
-		Board board = service.getBoardByNum(bNum);
-		
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("writeResult.jsp");
-		
-		request.setAttribute("board", board);
-		
-		dispatcher.forward(request, response);
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// 
+		request.setCharacterEncoding("UTF-8");
+		
+		HttpSession session = request.getSession();
+		Member currentUser = (Member)session.getAttribute("member");
+		
+		Member member = new Member();
+		member.setMemberId("userId");
+		member.setMemberPw("userPw");
+		
+		//세션을 제거하고
+		session.removeAttribute("Logout");
+		
+		// login 페이지로 가기 
+		response.sendRedirect("login.jsp");
 	}
-
 }

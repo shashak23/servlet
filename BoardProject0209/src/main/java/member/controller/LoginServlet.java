@@ -58,6 +58,7 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String userId = request.getParameter("userID");
 		String userPw = request.getParameter("userPW");
+//		String remember = request.getParameter("remember"); // 리멤버라는 파일 저장
 		
 		// 입력받은 데이터로 VO를 생성해요!
 		// 데이터베이스 테이블을 기준으로 VO을 생성해야 하니..당연히 Table이 있어야 해요!
@@ -70,18 +71,18 @@ public class LoginServlet extends HttpServlet {
 		// 로직처리를 하기위해 Service객체를 생성해야 해요!
 		MemberService service = new MemberService();
 		// 인스턴스 = 메소드 
-		
 		// 클라이언트가 요청할 떄마다 이게 실행되는데, 100명이면 100개가 만들어지겠쬬?
 	    // 그럼 서버가 많이 힘들어요? 이렇게 되겠쬬? -> 이런 식의 코드는 좋지 않지만 의미론적으로 우리끼리 하는 거니까 해봐요!
 	    // 객체가 생성되었으면 이제 일을 시켜요
 		//  boolean result = service.login(member);  //불리언을 쓴다면 login이 트루, 폴스
 		// 만약 로그인이 성공하면 VO안에 회원의 이름까지 포함해서 들고와요.
-		// 만약 로그인이 실패하면 nulal을 리턴받을꺼예요!
+		// 만약 로그인이 실패하면 null을 리턴받을꺼예요!
 		
 		Member result = service.login(member);
 		
 		List<Board> list = null; //vo가 있어야기 테이블을 댕겨서 데이터를 담아서 리스트를 쓰겠쬬?
 	      // 위에처럼 미리 선언하는 거에요
+		
 
 		if(result != null) {
 			BoardService bservice = new BoardService();
@@ -94,7 +95,8 @@ public class LoginServlet extends HttpServlet {
 			// 로그인에 성공한 흔적을 남겨놔야 해요! => session에 남겨놓으면 좋아요!
 			HttpSession session = request.getSession(true);
 			session.setAttribute("member", result);
-	    	// 로그인에 성공했으니까 게시판 HTML페이지를 클라이언트에게 전송해요!(jsp)
+	    	// 로그인에 성공했으니까 게시판 HTML페이지를 클라이언트에게 전송해요!(jsp) 
+			// 로그인에 성공했으면 세션을 발급하고 
 			// JSP는 그 실체가 Servlet이예요!
 			// html -> servlet -> service - > dao -> 
 			// service -> controller -> jsp(servlet) -> client
@@ -123,7 +125,7 @@ public class LoginServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		} else {
-			// 로그인에 실패했어요!
+			// 로그인에 실패했어요! 그러면 세션 발급 실패 -> session.removeAttribute("id");
 			// 오류 HTML페이지를 클라이언트에게 전송해요!(HTML)
 	    	  // 내가 보내줄 html 파일을 명시 - loginFail.html
 
@@ -133,6 +135,7 @@ public class LoginServlet extends HttpServlet {
 	    	  // session에 박는 걸 어디다가 할건가요? -> servlet과 관련된 처리는 servlet에서 해야해요
 	    	  // session은 servlet에서 처리하는 것 다른 곳에서는 처리할 수가 없어요!
 		}
+		
 		
 	}
 
